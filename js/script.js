@@ -88,7 +88,7 @@
         count = 0;
         
         $(".temp").replaceAll(temp);
-        } else if ($weatherid.textContent == '' && $tempid.textContent == "" && $locationid.textContent == "" && count <= 9) {
+        } else if ($weatherid.textContent == '' && $tempid.textContent == "" && $locationid.textContent == "" && count >= 9) {
           $(".temp").append("No Rain within 100 miles.");
           count = 0;
         }
