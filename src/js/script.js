@@ -105,7 +105,7 @@
 
 })();
   
-  // -----------FAILED ATTEMPTS-------------
+  // ------------FAILED ATTEMPTS--------------
 
 //     placesAutocomplete.on('change', (e) => {
 //       lati = e.suggestion.latlng.lat || '';
