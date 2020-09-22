@@ -66,7 +66,7 @@
         state = element.regionCode;
         country = element.countryCode;
     
-       weatherInfo = fetch("http://api.openweathermap.org/data/2.5/weather?q=" + city  + "," + state + "," + country + "&units=imperial&APPID=8266711937dd0c587290c3b4a86c6b7c", {
+       weatherInfo = fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city  + "," + state + "," + country + "&units=imperial&APPID=8266711937dd0c587290c3b4a86c6b7c", {
         method: 'get',
       }).then(response => {
          return response.json();
