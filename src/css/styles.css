@@ -1,0 +1,77 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+main {
+    font-family: 'Heebo', sans-serif;
+}
+
+.container {
+    padding-top: 10%;
+    place-items: center;
+}
+.underbar {
+    padding-left: 1%;
+}
+.weather {
+    font-size: 50px;
+    font-weight: bold;
+}
+.temp {
+    font-size: 90px;
+}
+.landing {
+    min-height: 100vh;
+    background: url("/RainNearMe/src/img/rainpool.jpg");
+    background-size: cover;
+    padding: 0rem 5rem;
+}
+#title {
+    font-family: "Abril Fatface", cursive;
+    font-weight: lighter;
+    font-size: 4rem;
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    color: #025072;
+
+}
+.intro {
+    background: #053e57;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slider {
+    background: #107ead;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateY(100%);
+}
+.intro-text {
+    color: aliceblue;
+    font-family: 'Heebo', sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+
+.hide {
+    background: 053e57;
+    overflow: hidden;
+}
+
+.hide span {
+    transform: translateY(100%);
+    display: inline-block;
+}
+#map-example-container {height: 300px};
