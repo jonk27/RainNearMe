@@ -1,63 +1,64 @@
 <!doctype html>
-
-<html lang="en">
+<html lang="en">  
+​
 <head>
   <meta charset="utf-8">
-
   <title>RainNearMe</title>
   <meta name="description" content="Rain Near Me">
   <meta name="Jonathan Kim" content="">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Heebo:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet/1/leaflet.css" />
+  <script src="https://cdn.jsdelivr.net/leaflet/1/leaflet.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="script.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous"></script>
 </head>
+​
 
-<input type="search" id="address" class="form-control" placeholder="Where are we going?" />
 
-<p>Selected: <strong id="address-value">none</strong></p>
-<script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
-<script>
-  (function() {
-  var placesAutocomplete = places({
-    appId: 'plM1C22AF7T3',
-    apiKey: '0d5f9f947ee21cf9bd711ab72ce5d8b9',
-    container: document.querySelector('#address')
-  });
 
-  var $address = document.querySelector('#address-value')
-  placesAutocomplete.on('change', function(e) {
-    $address.textContent = e.suggestion.value
-  });
-
-  placesAutocomplete.on('clear', function() {
-    $address.textContent = 'none';
-  });
-
-  placesAutocomplete.on('change', function resultSelected(e) {
-    
-    document.querySelector('#form-city').value = e.suggestion.latlng.lat || '';
-   
-  });
-
-})();
-</script>
 <body>
-  
-  <div class="form-group">
-    <label for="form-city">City*</label>
-    <input type="text" class="form-control" id="form-city" placeholder="City">
-  </div>
-  <div class='weathercontainer'>
-    <div id=searchbar>
+  <main>
+    <section class='landing'>
+      <h1 id=title>Rain Near Me</h1>
+
+      <div class='container'>
+        <div id=searchbar>
+    ​     <input type="search" id="address" class="form-control" placeholder="City or Address" />
+          <p class="underbar">Selected: <strong id="address-value">none</strong></p>
+        </div>
+        <p class='location' id=locationid></p>
+        <p class='weather' id=weatherid></p>
+        <p class='temp' id=tempid></p>
+      </div>
+    </section>
+
 
     </div>
-    <p class='location'></p>
-    <p class='weather'></p>
-    <p class='temp'></p>
+    
+
+  </main>  
+
+  <div class='intro'>
+    <div class='intro-text'>
+    <h1 class='hide'>
+      <span class='text'>Find Rain</span>
+    </h1>
+    <h1 class='hide'>
+      <span class='text'>Near You</span>
+    </h1>
+    <h1 class='hide'>
+      <span class='text'>Instantly</span>
+    </h1>
   </div>
+    
+  </div>
+  <div class='slider'></div>
+  
 
   
+​  <script src="./js/app.js"></script>
+  <script defer src="./js/script.js"></script>
 </body>
-</html>
