@@ -6,7 +6,7 @@
   var state;
   var country;
   var latlon;
-  var count = 0;
+
   var places;
   var i;
   var address1 = "1121%20Lady%20Carol%20Dr.";
@@ -26,8 +26,6 @@
     const $address = document.querySelector('#address-value')
     placesAutocomplete.on('change', (e) => {
       $address.textContent = e.suggestion.value
-      console.log("hello")
-      count = 0;
       
     });
   
@@ -36,15 +34,18 @@
       $locationid.textContent = '';
       $weatherid.textContent = '';
       $tempid.textContent = '';
-      count = 0;
-
+    
       
     });
 
     placesAutocomplete.on('change', (e) => {
       lati = e.suggestion.latlng.lat || '';
-      long = e.suggestion.latlng.lng || '';
+      if (Math.sign(e.suggestion.latlng.lng) == 1) {
+          long = "+" + e.suggestion.latlng.lng;
+      } else long = e.suggestion.latlng.lng;
+      
       latlon = String(lati) + long;
+      $weatherid.textContent = '';
       
       console.log(latlon)
     
@@ -57,26 +58,25 @@
     }).then(response => {
     return response.json();
     }).then(data => {
-      console.log(data)
-      console.log(data.data)
       data.data.forEach(element => {
         console.log(element);
         console.log(element.city);
         city = element.city;
         state = element.regionCode;
         country = element.countryCode;
+        lat = element.latitude;
+        lon = element.longitude;
     
-       weatherInfo = fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city  + "," + state + "," + country + "&units=imperial&APPID=8266711937dd0c587290c3b4a86c6b7c", {
+       weatherInfo = fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat  + "&lon=" + lon + "&appid=8266711937dd0c587290c3b4a86c6b7c", {
         method: 'get',
       }).then(response => {
          return response.json();
       }).then(data => {
-        console.log(data)
+        console.log(data);
         city = data.name
         let weatherCondition = data.weather[0].main;
         console.log(city + " " + weatherCondition)
-        count++;
-        console.log(count)
+
         if (weatherCondition == "Rain" && $weatherid.textContent == '') {
         var location = "lat: " + data.coord.lat + " long: " + data.coord.lon;
         $(".location").append(location);
@@ -85,22 +85,21 @@
         $(".weather").append("It is raining in " + city);
     
         var temp = Math.round(data.main.temp) + "F°";
-        count = 0;
-        
         $(".temp").replaceAll(temp);
-        } else if ($weatherid.textContent == '' && $tempid.textContent == "" && $locationid.textContent == "" && count >= 9) {
-          $(".temp").append("No Rain within 100 miles.");
-          count = 0;
-        }
+        } 
         
         })
       })
+     }).then(end => {
+      if ($weatherid.textContent == '' && $tempid.textContent == "" && $locationid.textContent == "") {
+        $(".temp").append("No Rain within 100 miles.");
+      }
      })
     });
   
   
   
-
+    
 
 
 })();
