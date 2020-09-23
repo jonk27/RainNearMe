@@ -6,13 +6,15 @@
   var state;
   var country;
   var latlon;
-
+  var count = 0;
   var places;
   var i;
   var address1 = "1121%20Lady%20Carol%20Dr.";
   
   const document = window.document
   console.log(window)
+  var h = window.innerHeight
+  console.log(h);
 
   const $locationid = document.querySelector('#locationid')
   const $weatherid = document.querySelector('#weatherid')
@@ -26,7 +28,7 @@
     const $address = document.querySelector('#address-value')
     placesAutocomplete.on('change', (e) => {
       $address.textContent = e.suggestion.value
-      
+      count = 0;
     });
   
     placesAutocomplete.on('clear', () => {
@@ -34,7 +36,7 @@
       $locationid.textContent = '';
       $weatherid.textContent = '';
       $tempid.textContent = '';
-    
+      count = 0;
       
     });
 
@@ -46,7 +48,7 @@
       
       latlon = String(lati) + long;
       $weatherid.textContent = '';
-      
+      count = 0;
       console.log(latlon)
     
     return cityResult = fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/locations/" + latlon + "/nearbyCities?limit=10&minPopulation=80000&radius=200", {
@@ -58,6 +60,8 @@
     }).then(response => {
     return response.json();
     }).then(data => {
+      console.log(data);
+      let arrayLength = data.data.length;
       data.data.forEach(element => {
         console.log(element);
         console.log(element.city);
@@ -87,17 +91,49 @@
         var temp = Math.round(data.main.temp) + "F°";
         $(".temp").replaceAll(temp);
         } 
-        
+        count++;
+        console.log(count);
+        }).then(end => {
+          if ($weatherid.textContent == '' && $tempid.textContent == "" && $locationid.textContent == "" && count == arrayLength) {
+            $(".temp").append("No Rain within 100 miles.");
+          }
+          })
         })
       })
-     }).then(end => {
-      if ($weatherid.textContent == '' && $tempid.textContent == "" && $locationid.textContent == "") {
-        $(".temp").append("No Rain within 100 miles.");
-      }
-     })
     });
   
-  
+    var makeItRain = function() {
+      //clear out everything
+      $('.rain').empty();
+    
+      var increment = 0;
+      var drops = "";
+      var backDrops = "";
+    
+      while (increment < 100) {
+        //couple random numbers to use for various randomizations
+        //random number between 98 and 1
+        var randoHundo = (Math.floor(Math.random() * (98 - 1 + 1) + 1));
+        //random number between 5 and 2
+        var randoFiver = (Math.floor(Math.random() * (5 - 2 + 1) + 2));
+        //increment
+        increment += randoFiver;
+        //add in a new raindrop with various randomizations to certain CSS properties
+        drops += '<div class="drop" style="left: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
+        backDrops += '<div class="drop" style="right: ' + increment + '%; bottom: ' + (randoFiver + randoFiver - 1 + 100) + '%; animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"><div class="stem" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div><div class="splat" style="animation-delay: 0.' + randoHundo + 's; animation-duration: 0.5' + randoHundo + 's;"></div></div>';
+      }
+    
+      $('.rain.front-row').append(drops);
+      $('.rain.back-row').append(backDrops);
+    }
+    
+
+    $('.splat-toggle.toggle').toggleClass('active');
+
+    $('.back-row-toggle.toggle').toggleClass('active');
+    
+    
+    makeItRain();
   
     
 
