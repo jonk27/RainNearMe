@@ -92,7 +92,7 @@
         $(".weather").hide().append("It is raining in " + city + ".").slideDown(1000);
     
         var temp = Math.round(data.main.temp) + "F°";
-        $(".temp").hide().delay(500).append("<form action='http://maps.google.com/maps' method='get' target='_blank'><input type='hidden' name='saddr' value='" + completedPlace + "'/><input type='hidden' name='daddr' value='" + cityCountry + "' /><input type='submit' value='Get Directions' /></form>").slideDown(500);
+        $(".temp").hide().delay(500).append("<form action='http://maps.google.com/maps' method='get' target='_blank'><input type='hidden' name='saddr' value='" + completedPlace + "'/><input type='hidden' name='daddr' value='" + cityCountry + "' /><input class='border border-dark' type='submit' value='Get Directions' /></form>").slideDown(500);
         } 
         count++;
         // console.log(count);
