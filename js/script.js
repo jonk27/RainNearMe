@@ -86,25 +86,28 @@
 
         if (weatherCondition == "Rain" && $weatherid.textContent == '') {
         var location = "lat: " + data.coord.lat + " long: " + data.coord.lon;
-        $(".location").append(location);
+        // $(".location").append(location);
     
         var weather = data.weather[0].main;
-        $(".weather").append("It is raining in " + city + ".");
+        $(".weather").hide().append("It is raining in " + city + ".").slideDown(1000);
     
         var temp = Math.round(data.main.temp) + "F°";
-        $(".temp").append("<form action='http://maps.google.com/maps' method='get' target='_blank'><input type='hidden' name='saddr' value='" + completedPlace + "'/><input type='hidden' name='daddr' value='" + cityCountry + "' /><input type='submit' value='Get Directions' /></form>");
+        $(".temp").hide().delay(500).append("<form action='http://maps.google.com/maps' method='get' target='_blank'><input type='hidden' name='saddr' value='" + completedPlace + "'/><input type='hidden' name='daddr' value='" + cityCountry + "' /><input type='submit' value='Get Directions' /></form>").slideDown(500);
         } 
         count++;
         // console.log(count);
         }).then(end => {
           if ($weatherid.textContent == '' && $tempid.textContent == "" && $locationid.textContent == "" && count == arrayLength) {
-            $(".temp").append("No Rain within 100 miles.");
-            $(".disclaimer").append("These results may not be accurate due to <a href='http://geodb-cities-api.wirefreethought.com/pricing' target='_blank'>API request limitations</a>.");
+            $(".temp").hide().append("No Rain within 100 miles.").slideDown(1000);
+            $(".disclaimer").hide().delay(800).append("These results may not be accurate due to <a href='http://geodb-cities-api.wirefreethought.com/pricing' target='_blank'>API request limitations</a>.").slideDown(1000);
           }
           })
         })
       })
     });
+
+    $("#titlecontainer").hide().delay(3000).slideDown(1000);
+    $(".searchbar").hide().delay(3400).slideDown(1000);
   
     var makeItRain = function() {
       //clear out everything

@@ -222,7 +222,8 @@ input[type=submit] {
     {
       padding-left:0;
       margin-bottom:0;
-      list-style:none
+      list-style:none;
+      padding-bottom: 1%;
     }
     .social-icons li
     {
