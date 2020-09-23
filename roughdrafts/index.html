@@ -1,0 +1,63 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>RainNearMe</title>
+  <meta name="description" content="Rain Near Me">
+  <meta name="Jonathan Kim" content="">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+
+</head>
+
+<input type="search" id="address" class="form-control" placeholder="Where are we going?" />
+
+<p>Selected: <strong id="address-value">none</strong></p>
+<script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+<script>
+  (function() {
+  var placesAutocomplete = places({
+    appId: 'plM1C22AF7T3',
+    apiKey: '0d5f9f947ee21cf9bd711ab72ce5d8b9',
+    container: document.querySelector('#address')
+  });
+
+  var $address = document.querySelector('#address-value')
+  placesAutocomplete.on('change', function(e) {
+    $address.textContent = e.suggestion.value
+  });
+
+  placesAutocomplete.on('clear', function() {
+    $address.textContent = 'none';
+  });
+
+  placesAutocomplete.on('change', function resultSelected(e) {
+    
+    document.querySelector('#form-city').value = e.suggestion.latlng.lat || '';
+   
+  });
+
+})();
+</script>
+<body>
+  
+  <div class="form-group">
+    <label for="form-city">latitude*</label>
+    <input type="text" class="form-control" id="form-city" placeholder="latitude">
+  </div>
+  <div class='weathercontainer'>
+    <div id=searchbar>
+
+    </div>
+    <p class='location'></p>
+    <p class='weather'></p>
+    <p class='temp'></p>
+  </div>
+
+  
+</body>
+</html>

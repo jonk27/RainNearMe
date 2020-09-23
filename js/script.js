@@ -7,8 +7,8 @@
   var country;
   var latlon;
   var count = 0;
-  var places;
-  var i;
+  var completedPlace;
+  var cityCountry;
   var address1 = "1121%20Lady%20Carol%20Dr.";
   
   const document = window.document
@@ -19,6 +19,7 @@
   const $locationid = document.querySelector('#locationid')
   const $weatherid = document.querySelector('#weatherid')
   const $tempid = document.querySelector('#tempid')
+  const $discid = document.querySelector('#discid')
     const placesAutocomplete = window.places({
       appId: 'plM1C22AF7T3',
       apiKey: '0d5f9f947ee21cf9bd711ab72ce5d8b9',
@@ -36,6 +37,7 @@
       $locationid.textContent = '';
       $weatherid.textContent = '';
       $tempid.textContent = '';
+      $discid.textContent = '';
       count = 0;
       
     });
@@ -49,7 +51,7 @@
       latlon = String(lati) + long;
       $weatherid.textContent = '';
       count = 0;
-      console.log(latlon)
+      completedPlace = e.suggestion.value;
     
     return cityResult = fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/locations/" + latlon + "/nearbyCities?limit=10&minPopulation=80000&radius=200", {
         "method": "GET",
@@ -60,11 +62,11 @@
     }).then(response => {
     return response.json();
     }).then(data => {
-      console.log(data);
+      // console.log(data);
       let arrayLength = data.data.length;
       data.data.forEach(element => {
-        console.log(element);
-        console.log(element.city);
+        // console.log(element);
+        // console.log(element.city);
         city = element.city;
         state = element.regionCode;
         country = element.countryCode;
@@ -76,8 +78,9 @@
       }).then(response => {
          return response.json();
       }).then(data => {
-        console.log(data);
-        city = data.name
+        city = data.name;
+        newCountry = data.sys.country;
+        cityCountry = city + ", " + newCountry;
         let weatherCondition = data.weather[0].main;
         console.log(city + " " + weatherCondition)
 
@@ -86,16 +89,17 @@
         $(".location").append(location);
     
         var weather = data.weather[0].main;
-        $(".weather").append("It is raining in " + city);
+        $(".weather").append("It is raining in " + city + ".");
     
         var temp = Math.round(data.main.temp) + "F°";
-        $(".temp").replaceAll(temp);
+        $(".temp").append("<form action='http://maps.google.com/maps' method='get' target='_blank'><input type='hidden' name='saddr' value='" + completedPlace + "'/><input type='hidden' name='daddr' value='" + cityCountry + "' /><input type='submit' value='Get Directions' /></form>");
         } 
         count++;
-        console.log(count);
+        // console.log(count);
         }).then(end => {
           if ($weatherid.textContent == '' && $tempid.textContent == "" && $locationid.textContent == "" && count == arrayLength) {
             $(".temp").append("No Rain within 100 miles.");
+            $(".disclaimer").append("These results may not be accurate due to <a href='http://geodb-cities-api.wirefreethought.com/pricing' target='_blank'>API request limitations</a>.");
           }
           })
         })

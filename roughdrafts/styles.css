@@ -1,0 +1,11 @@
+.weathercontainer {
+  
+    text-align: center;
+}
+.weather {
+    font-size: 30px;
+    font-weight: bold;
+}
+.temp {
+    font-size: 90px;
+}

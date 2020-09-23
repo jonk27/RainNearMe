@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">  
+​
+<head>
+  <meta charset="utf-8">
+  <title>RainNearMe</title>
+  <meta name="description" content="Rain Near Me">
+  <meta name="Jonathan Kim" content="">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/places.js@1.19.0"></script>
+</head>
+​
+<body>  
+  <input type="search" id="address" class="form-control" placeholder="Where are we going?" />
+<p>Selected: <strong id="address-value">none</strong></p>
+  <div class="form-group">
+    <label for="form-city">City*</label>
+    <input type="text" class="form-control" id="form-city" placeholder="City">
+  </div>
+  <div class='weathercontainer'>
+    <div id=searchbar>
+​
+    </div>
+    <p class='location'></p>
+    <p class='weather'></p>
+    <p class='temp'></p>
+  </div>
+​
+  <script defer src="./js/script.js"></script>
+</body>

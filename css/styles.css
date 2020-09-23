@@ -13,12 +13,16 @@ body {
 main {
     font-family: 'Heebo', sans-serif;
 }
-.container {
-    padding-top: 10%;
+#titlecontainer {
+    padding-top: 8%;
+    padding-left: 2%;
     place-items: center;
 }
+.queryresults {
+    padding-left: 2%;
+}
 .underbar {
-    padding-left: 1.2%;
+    padding-left: 1.1%;
 }
 .weather {
     font-size: 50px;
@@ -26,6 +30,9 @@ main {
 }
 .temp {
     font-size: 90px;
+}
+.disclaimer {
+    font-size: 20px;
 }
 .landing {
     position: relative;
@@ -39,9 +46,6 @@ main {
     font-family: "Abril Fatface", cursive;
     font-weight: lighter;
     font-size: 4rem;
-    position: absolute;
-    top: 10%;
-    left: 40%;
     color: #025072;
 
 }
@@ -49,22 +53,27 @@ main {
     font-family: "Abril Fatface", cursive;
     font-weight: lighter;
     font-size: 1rem;
-    position: absolute;
-    top: 18%;
-    left: 40%;
+
     color: #025072;
 
 }
 .nav-links  {
     display: flex;
     list-style: none;
-    position: absolute;
-    top: 17.5%;
-    left: 52.7%;
 }
 .nav-links li {
     padding-left: 1rem;
-    
+}
+input[type=submit] {
+  background-color: #107ead;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: 20px !important; 
 }
 .intro {
     background: #053e57;
@@ -204,11 +213,7 @@ main {
 
   @media (max-width:767px)
     {
-      .site-footer
-      {
-        padding-bottom:0
-      }
-      .site-footer .copyright-text,.site-footer .social-icons
+       .copyright-text, .social-icons
       {
         text-align:center
       }
@@ -251,13 +256,6 @@ main {
     {
       color:#fff;
       background-color:#29aafe
-    }
-    .social-icons.size-sm a
-    {
-      line-height:1px;
-      height:34px;
-      width:34px;
-      font-size:14px
     }
     .social-icons a.facebook:hover
     {

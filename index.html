@@ -22,25 +22,42 @@
 <body>
   <main>
     <section class='landing'>
-      <h1 id=title>Rain Near Me</h1>
-      <h4 class="copyright-text">A Project by Jonathan Kim 2020</h4>
-      <ul class="nav-links social-icons">
-        <li><a class="facebook" href="https://www.facebook.com/jonathan.kim.3386"><i class="fa fa-facebook"></i></a></li>
-        <li><a class="dribbble" href="https://github.com/jonk27"><i class="fa fa-github"></i></a></li>
-        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-      </ul>
-      
-
+      <div class="container" id='titlecontainer'>
+        <div class=row>
+          <h1 id=title>Rain Near Me</h1>
+        </div>
+        <div class='row'>
+          <h4 class="copyright-text">A Project by Jonathan Kim 2020</h4>
+          <ul class="nav-links social-icons">
+            <li><a class="facebook" href="https://www.facebook.com/jonathan.kim.3386"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="dribbble" href="https://github.com/jonk27"><i class="fa fa-github"></i></a></li>
+            <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+          </ul>
+        </div>
+        </div>
+        
       <div class='container'>
-        <div id=searchbar>
+        <div id='row'>
     ​     <input type="search" id="address" class="form-control" placeholder="City or Address" />
           <p class="underbar">Selected: <strong id="address-value">none</strong></p>
         </div>
-        <p class='location' id=locationid></p>
-        <p class='weather' id=weatherid></p>
-        <p class='temp' id=tempid></p>
+        <div class="queryresults">
+          <div class='row'>
+            <p class='location' id=locationid></p>
+          </div>
+          <div class='row'>
+            <p class='weather' id=weatherid></p>
+          </div>
+          <div class='row'>
+            <p class='temp' id=tempid></p>
+          </div>
+          <div class='row'>
+            <p class='disclaimer' id=discid></p>
+          </div>
+        </div>
       </div>
-
+    </section>
+   </main>
 
 
   <div class='intro'>
@@ -69,6 +86,31 @@
       <div class="single-toggle toggle">SINGLE</div> -->
     </div>
   </div>
+
+       <!-- Disclaimer Modal -->
+       <div class="modal fade" id="discModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">TBD</h4>
+              <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+              <p></p>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
   
 
 
